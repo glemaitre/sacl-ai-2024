@@ -53,6 +53,7 @@ logistic_regression[-1].n_iter_
 
 # %%
 logistic_regression.get_params()
+
 # %%
 logistic_regression.set_params(logisticregression__max_iter=10_000)
 logistic_regression.fit(X_numeric, y)
@@ -70,9 +71,13 @@ logistic_regression.fit(X_numeric, y)
 logistic_regression[-1].n_iter_
 
 # %%
-logistic_regression_without_scaling = make_pipeline(
-    SimpleImputer(), LogisticRegression(max_iter=10_000)
-).fit(X_numeric, y)
+from sklearn.model_selection import cross_validate
+
+cv_results = cross_validate(
+    logistic_regression, X_numeric, y, cv=10, return_train_score=True
+)
+cv_results = pd.DataFrame(cv_results)
+cv_results[["train_score", "test_score"]]
 
 # %%
 X_categorical = X.select_dtypes(exclude="number")
@@ -93,76 +98,46 @@ X_encoded = one_hot_encoder.fit_transform(X_categorical)
 X_encoded
 
 # %%
-logistic_regression = make_pipeline(
-    OneHotEncoder(), LogisticRegression()
+logistic_regression = make_pipeline(OneHotEncoder(), LogisticRegression())
+cv_results = cross_validate(
+    logistic_regression, X_categorical, y, cv=10, return_train_score=True
 )
-logistic_regression.fit(X_categorical, y)
-
-# %%
-from sklearn.compose import make_column_transformer, make_column_selector as selector
-
-preprocessor = make_column_transformer(
-    (make_pipeline(StandardScaler(), SimpleImputer()), selector(dtype_include="number")),
-    (OneHotEncoder(), selector(dtype_exclude="number")),
-)
-logistic_regression = make_pipeline(preprocessor, LogisticRegression())
-logistic_regression
-
-# %%
-logistic_regression.fit(X_train, y_train)
-
-# %%
-y.value_counts()
-
-# %%
-from sklearn.metrics import classification_report
-
-print(
-    classification_report(y_test, logistic_regression.predict(X_test))
-)
-
-# %%
-from sklearn.model_selection import cross_validate
-
-cv_results = cross_validate(logistic_regression, X, y, return_train_score=True)
 cv_results = pd.DataFrame(cv_results)
-cv_results
+cv_results[["train_score", "test_score"]]
 
 # %%
 logistic_regression.get_params()
 
 # %%
-logistic_regression.set_params(
-    columntransformer__onehotencoder__handle_unknown="ignore"
+logistic_regression.set_params(onehotencoder__handle_unknown="ignore")
+
+# %%
+cv_results = cross_validate(
+    logistic_regression, X_categorical, y, cv=10, return_train_score=True
 )
-
-# %%
-cv_results = cross_validate(logistic_regression, X, y, return_train_score=True)
 cv_results = pd.DataFrame(cv_results)
-cv_results
+cv_results[["train_score", "test_score"]]
 
 # %%
+from sklearn.compose import make_column_selector as selector
+
+numerical_columns = selector(dtype_include="number")
+numerical_columns(X)
+
+# %%
+from sklearn.compose import make_column_transformer
+
+numerical_selector = selector(dtype_include="number")
+categorical_selector = selector(dtype_exclude="number")
 preprocessor = make_column_transformer(
-    # (make_pipeline(StandardScaler(), SimpleImputer()), selector(dtype_include="number")),
-    (OneHotEncoder(handle_unknown="ignore"), selector(dtype_exclude="number")),
+    (make_pipeline(StandardScaler(), SimpleImputer()), numerical_selector),
+    (OneHotEncoder(handle_unknown="ignore"), categorical_selector),
 )
 logistic_regression = make_pipeline(preprocessor, LogisticRegression())
+logistic_regression
 
 # %%
-cv_results = cross_validate(logistic_regression, X, y, return_train_score=True)
-cv_results = pd.DataFrame(cv_results)
-cv_results
-
-# %%
-# %%
-preprocessor = make_column_transformer(
-    (make_pipeline(StandardScaler(), SimpleImputer()), selector(dtype_include="number")),
-    # (OneHotEncoder(handle_unknown="ignore"), selector(dtype_exclude="number")),
-)
-logistic_regression = make_pipeline(preprocessor, LogisticRegression())
-
-# %%
-cv_results = cross_validate(logistic_regression, X, y, return_train_score=True)
+cv_results = cross_validate(logistic_regression, X, y, cv=10, return_train_score=True)
 cv_results = pd.DataFrame(cv_results)
 cv_results
 
