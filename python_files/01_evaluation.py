@@ -89,9 +89,7 @@ X_poly
 
 # %%
 linear_regression.fit(X_poly, y)
-X_to_infer_poly = polynomial_features.transform(
-    standard_scaler.transform(X_to_infer)
-)
+X_to_infer_poly = polynomial_features.transform(standard_scaler.transform(X_to_infer))
 y_pred_poly = linear_regression.predict(X_to_infer_poly)
 
 # %%
@@ -236,10 +234,13 @@ cv_results_poly["test_score"] = -cv_results_poly["test_score"]
 cv_results_poly["train_score"] = -cv_results_poly["train_score"]
 
 # %%
-test_scores = pd.concat([
-    cv_results[["test_score"]].add_prefix("LinearRegression_"),
-    cv_results_poly[["test_score"]].add_prefix("PolynomialRegression_"),
-], axis=1)
+test_scores = pd.concat(
+    [
+        cv_results[["test_score"]].add_prefix("LinearRegression_"),
+        cv_results_poly[["test_score"]].add_prefix("PolynomialRegression_"),
+    ],
+    axis=1,
+)
 ax = test_scores.plot.hist(bins=10, alpha=0.7)
 _ = ax.set_xlim(0, 500)
 
@@ -256,8 +257,10 @@ n_bootstraps = 1_000
 errors = []
 for _ in range(n_bootstraps):
     bootstrap_indices = np.random.choice(len(y_test), size=len(y_test), replace=True)
-    errors.append(mean_absolute_error(
-        y_test.to_numpy()[bootstrap_indices], y_pred[bootstrap_indices])
+    errors.append(
+        mean_absolute_error(
+            y_test.to_numpy()[bootstrap_indices], y_pred[bootstrap_indices]
+        )
     )
 errors = np.array(errors)
 

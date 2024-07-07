@@ -142,3 +142,20 @@ cv_results = pd.DataFrame(cv_results)
 cv_results
 
 # %%
+categorical_columns = categorical_selector(X)
+X[categorical_columns] = X[categorical_columns].astype("category")
+X.info()
+
+# %%
+from sklearn.ensemble import HistGradientBoostingClassifier
+
+hist_gradient_boosting = HistGradientBoostingClassifier(
+    categorical_features="from_dtype"
+)
+cv_results = cross_validate(
+    hist_gradient_boosting, X, y, cv=10, return_train_score=True
+)
+cv_results = pd.DataFrame(cv_results)
+cv_results
+
+# %%

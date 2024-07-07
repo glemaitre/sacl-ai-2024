@@ -215,12 +215,13 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/rfc3339-validator-0.1.4-pyhd8ed1ab_0.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/noarch/rfc3986-validator-0.1.1-pyh9f0ad1d_0.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/linux-64/rpds-py-0.18.1-py312h4413252_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/scikit-learn-1.5.1-py312h775a589_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/scikit-learn-1.5.0-py312h1fcc3ea_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/scipy-1.14.0-py312hc2bc53b_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/send2trash-1.8.3-pyh0d859eb_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/setuptools-70.1.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/sip-6.7.12-py312h30efb56_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/six-1.16.0-pyh6c4a22f_0.tar.bz2
+      - conda: https://conda.anaconda.org/conda-forge/noarch/skrub-0.2.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/sniffio-1.3.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/soupsieve-2.5-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/stack_data-0.6.2-pyhd8ed1ab_0.conda
@@ -415,11 +416,12 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/rfc3339-validator-0.1.4-pyhd8ed1ab_0.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/noarch/rfc3986-validator-0.1.1-pyh9f0ad1d_0.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/osx-64/rpds-py-0.18.1-py312ha47ea1c_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/osx-64/scikit-learn-1.5.1-py312hc214ba5_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-64/scikit-learn-1.5.0-py312hc214ba5_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/scipy-1.14.0-py312hb9702fa_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/send2trash-1.8.3-pyh31c8845_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/setuptools-70.1.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/six-1.16.0-pyh6c4a22f_0.tar.bz2
+      - conda: https://conda.anaconda.org/conda-forge/noarch/skrub-0.2.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/sniffio-1.3.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/soupsieve-2.5-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/stack_data-0.6.2-pyhd8ed1ab_0.conda
@@ -596,11 +598,12 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/rfc3339-validator-0.1.4-pyhd8ed1ab_0.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/noarch/rfc3986-validator-0.1.1-pyh9f0ad1d_0.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/rpds-py-0.18.1-py312h552d48e_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/scikit-learn-1.5.1-py312h1b546db_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/scikit-learn-1.5.0-py312h1b546db_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/scipy-1.14.0-py312h14ffa8f_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/send2trash-1.8.3-pyh31c8845_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/setuptools-70.1.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/six-1.16.0-pyh6c4a22f_0.tar.bz2
+      - conda: https://conda.anaconda.org/conda-forge/noarch/skrub-0.2.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/sniffio-1.3.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/soupsieve-2.5-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/stack_data-0.6.2-pyhd8ed1ab_0.conda
@@ -795,12 +798,13 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/rfc3339-validator-0.1.4-pyhd8ed1ab_0.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/noarch/rfc3986-validator-0.1.1-pyh9f0ad1d_0.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/win-64/rpds-py-0.18.1-py312h2615798_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/win-64/scikit-learn-1.5.1-py312h816cc57_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/win-64/scikit-learn-1.5.0-py312h816cc57_1.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/scipy-1.14.0-py312h1f4e10d_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/send2trash-1.8.3-pyh5737063_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/setuptools-70.1.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/sip-6.7.12-py312h53d5487_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/six-1.16.0-pyh6c4a22f_0.tar.bz2
+      - conda: https://conda.anaconda.org/conda-forge/noarch/skrub-0.2.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/sniffio-1.3.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/soupsieve-2.5-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/stack_data-0.6.2-pyhd8ed1ab_0.conda
@@ -8138,12 +8142,13 @@ packages:
   timestamp: 1715090344206
 - kind: conda
   name: scikit-learn
-  version: 1.5.1
-  build: py312h1b546db_0
+  version: 1.5.0
+  build: py312h1b546db_1
+  build_number: 1
   subdir: osx-arm64
-  url: https://conda.anaconda.org/conda-forge/osx-arm64/scikit-learn-1.5.1-py312h1b546db_0.conda
-  sha256: 84dbdad6be17824cc188cd9f80d13707bb6e75afb64444476269b06643526225
-  md5: e9448f28dfa360ab849f89319fc145f4
+  url: https://conda.anaconda.org/conda-forge/osx-arm64/scikit-learn-1.5.0-py312h1b546db_1.conda
+  sha256: 7ff6c29c77f4f7d8058d5efd9d109535599b63de40b768805581418b3d2e2339
+  md5: d8db58e3966a1a7a77e823fb83964d56
   depends:
   - __osx >=11.0
   - joblib >=1.2.0
@@ -8157,18 +8162,18 @@ packages:
   - threadpoolctl >=3.1.0
   license: BSD-3-Clause
   license_family: BSD
-  size: 9546176
-  timestamp: 1719998598002
+  size: 9499152
+  timestamp: 1716490278597
 - kind: conda
   name: scikit-learn
-  version: 1.5.1
-  build: py312h775a589_0
+  version: 1.5.0
+  build: py312h1fcc3ea_1
+  build_number: 1
   subdir: linux-64
-  url: https://conda.anaconda.org/conda-forge/linux-64/scikit-learn-1.5.1-py312h775a589_0.conda
-  sha256: cf9735937209d01febf1f912559e28dc3bb753906460e5b85dc24f0d57a78d96
-  md5: bd8c79ccb9498336cbb174cf0151024a
+  url: https://conda.anaconda.org/conda-forge/linux-64/scikit-learn-1.5.0-py312h1fcc3ea_1.conda
+  sha256: 96dc4258ba8a7867f73b6941fc35d1f6e330dd716d3f5d48384d39b9ce921dcf
+  md5: 8b5f1cdde05d0978a15792f6c4c0306b
   depends:
-  - __glibc >=2.17,<3.0.a0
   - _openmp_mutex >=4.5
   - joblib >=1.2.0
   - libgcc-ng >=12
@@ -8180,16 +8185,17 @@ packages:
   - threadpoolctl >=3.1.0
   license: BSD-3-Clause
   license_family: BSD
-  size: 10384469
-  timestamp: 1719998679827
+  size: 10426658
+  timestamp: 1716490318614
 - kind: conda
   name: scikit-learn
-  version: 1.5.1
-  build: py312h816cc57_0
+  version: 1.5.0
+  build: py312h816cc57_1
+  build_number: 1
   subdir: win-64
-  url: https://conda.anaconda.org/conda-forge/win-64/scikit-learn-1.5.1-py312h816cc57_0.conda
-  sha256: 00ab427eaebdc17816655ec7d116de9511a8ad04020fc47e0b4bc5dcfc46bbbb
-  md5: fa83d73ec4a87352b6bbfcdfde5aeab2
+  url: https://conda.anaconda.org/conda-forge/win-64/scikit-learn-1.5.0-py312h816cc57_1.conda
+  sha256: e5053c8495f00df51a34cecf08ea809e018dde158ddc4ccd356184718d64a536
+  md5: c702dd6421032b589570ad95c0896fcc
   depends:
   - joblib >=1.2.0
   - numpy >=1.19,<3
@@ -8202,16 +8208,17 @@ packages:
   - vc14_runtime >=14.29.30139
   license: BSD-3-Clause
   license_family: BSD
-  size: 9225862
-  timestamp: 1719999149012
+  size: 9290772
+  timestamp: 1716491304075
 - kind: conda
   name: scikit-learn
-  version: 1.5.1
-  build: py312hc214ba5_0
+  version: 1.5.0
+  build: py312hc214ba5_1
+  build_number: 1
   subdir: osx-64
-  url: https://conda.anaconda.org/conda-forge/osx-64/scikit-learn-1.5.1-py312hc214ba5_0.conda
-  sha256: 62a33e1266c9e2e99e5bb68127160e04a592b62e553faa4f6ad2df264b9654f0
-  md5: 32625e0f29884a4704070c07a25edf94
+  url: https://conda.anaconda.org/conda-forge/osx-64/scikit-learn-1.5.0-py312hc214ba5_1.conda
+  sha256: 138b1ec5ea074e4c8d9aa3188c7d131d02cc2d52dc4ab61c77c10cb0997011a4
+  md5: 47c4d0817bc4d202db994005d1522a48
   depends:
   - __osx >=10.13
   - joblib >=1.2.0
@@ -8224,8 +8231,8 @@ packages:
   - threadpoolctl >=3.1.0
   license: BSD-3-Clause
   license_family: BSD
-  size: 9488534
-  timestamp: 1719998895551
+  size: 9576601
+  timestamp: 1716490694698
 - kind: conda
   name: scipy
   version: 1.14.0
@@ -8445,6 +8452,26 @@ packages:
   license_family: MIT
   size: 14259
   timestamp: 1620240338595
+- kind: conda
+  name: skrub
+  version: 0.2.0
+  build: pyhd8ed1ab_0
+  subdir: noarch
+  noarch: python
+  url: https://conda.anaconda.org/conda-forge/noarch/skrub-0.2.0-pyhd8ed1ab_0.conda
+  sha256: 684655263ff7da7a1b47e1355923c10523ce7e003c4cef1097b168cd9b91106f
+  md5: 8607064e9dc4c5664462010a072ebd89
+  depends:
+  - numpy >=1.23.5
+  - packaging >=23.1
+  - pandas >=1.5.3
+  - python >=3.9
+  - scikit-learn >=1.2.1
+  - scipy >=1.9.3
+  license: BSD-3-Clause
+  license_family: BSD
+  size: 150658
+  timestamp: 1719954168006
 - kind: conda
   name: sniffio
   version: 1.3.1

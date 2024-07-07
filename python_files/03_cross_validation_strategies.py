@@ -44,8 +44,7 @@ for cv_fold_idx, (train_indices, test_indices) in enumerate(cv.split(df, target)
         f"{target.iloc[train_indices].value_counts()}"
     )
     print(
-        f"Class counts on the test set:\n"
-        f"{target.iloc[test_indices].value_counts()}"
+        f"Class counts on the test set:\n" f"{target.iloc[test_indices].value_counts()}"
     )
     print()
 
@@ -67,8 +66,7 @@ for cv_fold_idx, (train_indices, test_indices) in enumerate(cv.split(df, target)
         f"{target.iloc[train_indices].value_counts()}"
     )
     print(
-        f"Class counts on the test set:\n"
-        f"{target.iloc[test_indices].value_counts()}"
+        f"Class counts on the test set:\n" f"{target.iloc[test_indices].value_counts()}"
     )
     print()
 
