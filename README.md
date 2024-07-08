@@ -47,3 +47,12 @@ packages using `pip`:
 pip install -r requirements.txt
 jupyter notebook  # or jupyter lab
 ```
+
+## Structure of the repository
+
+A pure python file with `jupytext` markers are available in `python_files` directory.
+We converted these files to `ipynb` files using `jupytext` and saved them in the
+`notebooks` directory.
+
+Similarly, we provide the corrections of the python files and notebooks in the
+`python_files_corrections` and `notebooks_corrections` directories respectively.
