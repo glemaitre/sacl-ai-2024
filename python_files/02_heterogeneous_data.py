@@ -46,48 +46,31 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0)
 
 # %% [markdown]
 #
-# Let's consider a logistic regression model. Let's try to fit the model without
-# preprocessing the data.
+# ### Exercise
+#
+# Fit a `LogisticRegression` model on the training data.
 
 # %%
 from sklearn.linear_model import LogisticRegression
 
-logistic_regression = LogisticRegression()
-logistic_regression.fit(X_train, y_train)
-
 # %% [markdown]
 #
-# We see that we have an error. Let's check if this is related to the type of data.
-
-# %%
-X
-
-# %% [markdown]
-#
-# So apparently yes... The `LogisticRegression` model from scikit-learn expects only
-# numerical data.
-
-# %%
-X.info()
-
-# %% [markdown]
-#
-# However, we observe that we have a mix of numerical and categorical data. Let's first
-# concentrate on the numerical data and check if there are some subtle issues.
+# So life is difficult. So let's start by looking at the numerical part.
 
 # %%
 X_numeric = X.select_dtypes(include="number")
 
+# %% [markdown]
+#
+# ### Exercise
+#
+# Fit a `LogisticRegression` model on the numerical data.
+
 # %%
-logistic_regression.fit(X_numeric, y)
 
 # %% [markdown]
 #
-# Apparently, the data contains missing values and the linear model does not handle
-# missing values natively. We can use a `SimpleImputer` to replace the missing values
-# by the mean of the column.
-#
-# For this purpose, we can use a scikit-learn pipeline.
+# Does it work?
 
 # %%
 from sklearn.pipeline import make_pipeline
@@ -159,6 +142,13 @@ cv_results[["train_score", "test_score"]]
 # %%
 X_categorical = X.select_dtypes(exclude="number")
 X_categorical
+
+# %% [markdown]
+#
+# ### Exercise
+#
+# Think of a way to transform the string category into numerical data.
+# Come with your own transform and evaluate the model using cross-validation.
 
 # %% [markdown]
 #
@@ -256,25 +246,10 @@ cv_results
 # %% [markdown]
 #
 # We gave basic preprocessing steps for linear model. However, there is another group
-# of models that can handle heterogeneous data: tree-based models. Those models do not
-# require scaling. Some in scikit-learn can even handle categorical data directly, if
-# they are tagged as categorical data.
-
-# %%
-categorical_columns = categorical_selector(X)
-X[categorical_columns] = X[categorical_columns].astype("category")
-X.info()
-
-# %%
-from sklearn.ensemble import HistGradientBoostingClassifier
-
-hist_gradient_boosting = HistGradientBoostingClassifier(
-    categorical_features="from_dtype"
-)
-cv_results = cross_validate(
-    hist_gradient_boosting, X, y, cv=10, return_train_score=True
-)
-cv_results = pd.DataFrame(cv_results)
-cv_results
-
-# %%
+# of models that can handle heterogeneous data: tree-based models.
+#
+# ### Exercise
+#
+# Looking at the documentation, create and evaluate a `HistGradientBoostingClassifier`
+# model on the penguins dataset. You are free to create any preprocessing steps you
+# want.

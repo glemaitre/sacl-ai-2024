@@ -124,24 +124,10 @@ pd.DataFrame(y_pred, columns=hist_gradient_boosting.classes_).head()
 
 # %% [markdown]
 #
-# We can convince ourselves that the sum of the probabilities is equal to 1.
-
-# %%
-y_pred.sum(axis=1)
-
-# %% [markdown]
+# ### Exercise
 #
-# The method `predict` is using a threshold of 0.5 to convert the probabilities into
-# classes. This could be done by taking the `argmax` of the probabilities.
-
-# %%
-hist_gradient_boosting.classes_[y_pred.argmax(axis=1)]
-
-# %%
-(
-    hist_gradient_boosting.classes_[y_pred.argmax(axis=1)]
-    == hist_gradient_boosting.predict(X_test)
-)
+# Try to find the relationship to go from the probabilities to the classes, or
+# in other word to go from the output of `predict_proba` to the output of `predict`.
 
 # %% [markdown]
 #
@@ -206,15 +192,12 @@ _ = display.ax_.set(xlabel="Recall", ylabel="Precision", title="Precision-Recall
 
 # %% [markdown]
 #
-# We could look at another trade-off by plotting the ROC curve.
+# ### Exercise
+#
+# Make the same analysis by plotting the ROC curve. I let you check the documentation
+# of scikit-learn to find the right classes to use.
 
 # %%
-from sklearn.metrics import RocCurveDisplay
-
-display = RocCurveDisplay.from_estimator(hist_gradient_boosting, X_test, y_test)
-_ = display.ax_.set(
-    xlabel="False Positive Rate", ylabel="True Positive Rate", title="ROC curve"
-)
 
 # %% [markdown]
 #

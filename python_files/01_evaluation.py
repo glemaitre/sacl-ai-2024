@@ -109,65 +109,25 @@ print(f"The mean squared error is: {error:.2f}")
 
 # %% [markdown]
 #
-# To emphasize the fact that `LinearRegression` minimizes the mean squared error, we can
-# use another linear model that minimizes another metric. `QuantileRegressor` is a
-# a linear model that minimizes the median absolute error. Indeed, this is an estimator
-# of the median of the conditional distribution of the target.
+# ### Exercise
 #
-# Let's fit such model and compare the mean squared error.
+# Let's repeat the previous experiment by fitting again a linear model but this model
+# is known as a quantile regression. You can import it from
+# `sklearn.linear_model.QuantileRegressor`. Let's fit the median (look at the
+# documentation to know which parameter to set).
 
 # %%
 from sklearn.linear_model import QuantileRegressor
 
-quantile_regression = QuantileRegressor(alpha=0)  # alpha=0 to not regularize
-quantile_regression.fit(X, y)
-y_pred_quantile = quantile_regression.predict(X_to_infer)
-quantile_regression.coef_, quantile_regression.intercept_
-
-# %%
-ax = df.plot.scatter(x="Flipper Length (mm)", y="Body Mass (g)")
-ax.set_title("Penguin Flipper Length vs Body Mass")
-ax.plot(X_to_infer, y_pred, linewidth=3, color="tab:orange", label="Linear Regression")
-ax.plot(
-    X_to_infer,
-    y_pred_quantile,
-    linewidth=3,
-    color="tab:red",
-    label="Quantile Regression",
-)
-_ = ax.legend()
-
 # %% [markdown]
 #
-# We observe a slight difference between the two models found. We can compute the mean
-# squared error of both models.
-
-# %%
-error = mean_squared_error(y, linear_regression.predict(X))
-print(f"The mean squared error of LinearRegression is: {error:.2f}")
-error = mean_squared_error(y, quantile_regression.predict(X))
-print(f"The mean squared error of QuantileRegression is: {error:.2f}")
+# Plot the prediction of the quantile regression model on the same plot as the linear
+# regression model to have a quantitative comparison.
+# Compute the mean squared error and compare it to the `LinearRegression` model.
+# Compute the median absolute error and compare it to the `LinearRegression` model.
+# Can you provide some insights.
 
 # %% [markdown]
-#
-# We observe that the `QuantileRegressor` has a higher mean squared error than the
-# `LinearRegression`. This is expected since the `QuantileRegressor` minimizes the
-# median absolute error and not the mean squared error. We can compute the median
-# absolute error to compare the two models.
-
-# %%
-from sklearn.metrics import median_absolute_error
-
-error = median_absolute_error(y, linear_regression.predict(X))
-print(f"The median absolute error of LinearRegression is: {error:.2f}")
-error = median_absolute_error(y, quantile_regression.predict(X))
-print(f"The median absolute error of QuantileRegression is: {error:.2f}")
-
-# %% [markdown]
-#
-# In terms of median absolute error, we observe that the `QuantileRegressor` has a lower
-# error than the `LinearRegression`. It is in-line with the fact that the
-# `QuantileRegressor` minimizes the median absolute error.
 #
 # Up to now, we have been evaluating the model on the same dataset but it does not tell
 # us how well the model will generalize to new data. Let's imagine that we have a more
@@ -192,31 +152,24 @@ X_poly
 # `fit` method will compute the required statistics to transform the data. The
 # `transform` method will apply the transformation to the data.
 #
-# Now, let's use this transformed dataset to fit a linear regression model.
+# ### Exercise
+#
+# Fit a `LinearRegression` model on the `X_poly` data and predict the body mass of the
+# penguins. Plot the prediction on the same plot as the linear regression model and the
+# quantile regression model. Compute the mean squared error and compare it to the
+# previous models.
 
 # %%
 linear_regression.fit(X_poly, y)
 X_to_infer_poly = polynomial_features.transform(standard_scaler.transform(X_to_infer))
 y_pred_poly = linear_regression.predict(X_to_infer_poly)
 
-# %%
-ax = df.plot.scatter(x="Flipper Length (mm)", y="Body Mass (g)")
-ax.set_title("Penguin Flipper Length vs Body Mass")
-ax.plot(
-    X_to_infer, y_pred_poly, linewidth=3, color="tab:orange", label="Linear Regression"
-)
-_ = ax.legend()
-
 # %% [markdown]
 #
-# We observed that while our model is linear, the fact that we created non-linear
-# features lead to a non-linear relationship between the flipper length and the body
-# mass of the penguins.
-#
-# However, we have no way to compare the quality of this model with the previous model.
-# To do so, we need to put ourself in a situation where we have a training set and a
-# testing set. The training set is the set used to create the model while the testing
-# set is used to evaluate the model on unseen data.
+# Up to now, we have no way to compare the quality of this model with the previous
+# model. To do so, we need to put ourself in a situation where we have a training set
+# and a testing set. The training set is the set used to create the model while the
+# testing set is used to evaluate the model on unseen data.
 
 # %%
 from sklearn.model_selection import train_test_split
@@ -365,64 +318,10 @@ cv_results[["train_score", "test_score"]].describe()
 
 # %% [markdown]
 #
-# In the previous cross-validation, we have only 5 estimations. We could repeat with
-# more splits an more shuffling and display the distribution of the error.
-
-# %%
-from sklearn.model_selection import RepeatedKFold
-
-cv = RepeatedKFold(n_splits=5, n_repeats=100, random_state=0)
-cv_results = cross_validate(
-    linear_regression,
-    X,
-    y,
-    cv=cv,
-    scoring="neg_mean_absolute_error",
-    return_train_score=True,
-)
-cv_results = pd.DataFrame(cv_results)
-cv_results
-
-# %%
-cv_results["test_score"] = -cv_results["test_score"]
-cv_results["train_score"] = -cv_results["train_score"]
-
-# %%
-ax = cv_results[["train_score", "test_score"]].plot.hist(bins=10, alpha=0.7)
-_ = ax.set_xlim(0, 500)
-
-# %%
-cv_results[["train_score", "test_score"]].describe()
-
-# %% [markdown]
+# ### Exercise
 #
-# We can do the same with the polynomial features. We can also compare the results.
-
-# %%
-from sklearn.pipeline import make_pipeline
-
-linear_regression_poly = make_pipeline(
-    PolynomialFeatures(degree=10), LinearRegression()
-)
-cv_results_poly = cross_validate(
-    linear_regression_poly,
-    X,
-    y,
-    cv=cv,
-    scoring="neg_mean_absolute_error",
-    return_train_score=True,
-)
-cv_results_poly = pd.DataFrame(cv_results_poly)
-cv_results_poly["test_score"] = -cv_results_poly["test_score"]
-cv_results_poly["train_score"] = -cv_results_poly["train_score"]
-
-# %%
-test_scores = pd.concat(
-    [
-        cv_results[["test_score"]].add_prefix("LinearRegression_"),
-        cv_results_poly[["test_score"]].add_prefix("PolynomialRegression_"),
-    ],
-    axis=1,
-)
-ax = test_scores.plot.hist(bins=10, alpha=0.7)
-_ = ax.set_xlim(0, 500)
+# Use a `sklearn.model_selection.RepeatedKFold` cross-validation strategy to evaluate
+# the performance of the linear regression model and the polynomial regression model.
+#
+# The idea is to repeat several times to be able to plot a distribution of the test
+# scores.

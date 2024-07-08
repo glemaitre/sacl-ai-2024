@@ -29,47 +29,19 @@ from sklearn.pipeline import make_pipeline
 logistic_regression = make_pipeline(StandardScaler(), LogisticRegression())
 logistic_regression
 
-# %%
-import pandas as pd
-from sklearn.model_selection import cross_validate, KFold
+# %% [markdown]
+#
+# ### Exercise
+#
+# Evaluate the previous `LogisticRegression` model using a 3-fold cross-validation
+# (i.e. `sklearn.model_selection.KFold`). What do you observe?
 
-cv = KFold(n_splits=3)
-cv_results = cross_validate(
-    logistic_regression, df, target, cv=cv, return_train_score=True
-)
-cv_results = pd.DataFrame(cv_results)
-cv_results[["train_score", "test_score"]]
+# %%
 
 # %% [markdown]
 #
 # We observe that the training score is always zero that is really surprising. We can
 # check the target to understand why.
-
-# %%
-ax = target.plot()
-_ = ax.set(
-    xlabel="Sample index",
-    ylabel="Target value",
-    title="Iris dataset target values",
-)
-
-# %% [markdown]
-#
-# We observe that the data is ordered by target. This is a problem because the KFold
-# object is not shuffling the data before splitting it. Therefore, we always get a
-# test set that does not contain a class seen during `fit`.
-
-# %%
-for cv_fold_idx, (train_indices, test_indices) in enumerate(cv.split(df, target)):
-    print(f"Fold {cv_fold_idx}:\n")
-    print(
-        f"Class counts on the train set:\n"
-        f"{target.iloc[train_indices].value_counts()}"
-    )
-    print(
-        f"Class counts on the test set:\n" f"{target.iloc[test_indices].value_counts()}"
-    )
-    print()
 
 # %% [markdown]
 #
@@ -181,46 +153,15 @@ logistic_regression = make_pipeline(MinMaxScaler(), LogisticRegression())
 
 # %% [markdown]
 #
-# Let's start to evaluate the model using a `KFold` object, once without shuffling and
-# once with shuffling.
-
-# %%
-cv = KFold(n_splits=13)
-cv_results = cross_validate(logistic_regression, df, target, cv=cv)
-print(
-    f"Mean test score: {cv_results['test_score'].mean():.3f} +/- "
-    f"{cv_results['test_score'].std():.3f}"
-)
-
-# %%
-cv = KFold(n_splits=13, shuffle=True, random_state=0)
-cv_results = cross_validate(logistic_regression, df, target, cv=cv)
-print(
-    f"Mean test score: {cv_results['test_score'].mean():.3f} +/- "
-    f"{cv_results['test_score'].std():.3f}"
-)
+# ### Exercise
+#
+# Make an evaluation and compare 2 different strategies:
+# - using a `KFold` object with 13 splits without shuffling the data;
+# - using a `KFold` object with 13 splits with shuffling the data.
+#
+# What do you observe? What are the causes of the differences?
 
 # %% [markdown]
-#
-# Surprisingly, the mean test score is increasing when shuffling the data. Let's check
-# if this is due to the random seed.
-
-# %%
-for seed in range(10):
-    cv = KFold(n_splits=13, shuffle=True, random_state=seed)
-    cv_results = cross_validate(logistic_regression, df, target, cv=cv)
-    print(
-        f"Mean test score: {cv_results['test_score'].mean():.3f} +/- "
-        f"{cv_results['test_score'].std():.3f}"
-    )
-
-# %% [markdown]
-#
-# Apparently not. The reason is that the samples are grouped by writer. By shuffling,
-# we are mixing the samples from different writers. Therefore, we are learning a model
-# on some writers that are also used to test. However, if we want to have a model that
-# generalizes well to new writers, we should not mix the samples from the same writer
-# between the training and testing set.
 #
 # Here, we provide a `groups` array that mentioned the writer ID for each sample.
 
